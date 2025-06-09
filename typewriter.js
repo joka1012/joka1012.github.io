@@ -71,6 +71,12 @@ document.getElementById("start-button").addEventListener("click", startTyping, {
 
 window.addEventListener("resize", handleResize);
 
+window.addEventListener('unload', function () {
+    // Entfernt nur den Speicher für diese Seite (z. B. Animationseinstellungen, Benutzerdaten etc.)
+    localStorage.clear();       // löscht alles aus localStorage
+    sessionStorage.clear();     // löscht alles aus sessionStorage (wird aber auch automatisch gelöscht beim Tab-Schließen)
+  });
+
 function handleResize() {
   if(startButtonClick == true) {
     audio.pause();
