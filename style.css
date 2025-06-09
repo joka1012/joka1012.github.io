@@ -37,12 +37,12 @@ html,body {
 }
 
 .slide-up {
-  transform: translateY(-450px); /* z. B. 150px nach oben */
+  transform: translateY(-82.5vh); /* z. B. 150px nach oben */
   transition: transform 0.7s ease;
 }
 
 .slide-down {
-    transform: translateY(230px); /* z. B. 150px nach unten */
+    transform: translateY(42.1vh); /* z. B. 150px nach unten */
     transition: transform 0.7s ease;
   }
 
