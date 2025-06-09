@@ -6,6 +6,12 @@ let spacing = 10;
 let radius = 50;
 
 function setup() {
+  if (window.innerWidth < 768) {
+    remove(); // zerstört das WebGL-Canvas sofort
+    noLoop(); // verhindert draw()
+    return;
+  }
+  
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.position(0, 0);
   canvas.style('z-index', '0');

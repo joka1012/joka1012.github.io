@@ -4,6 +4,7 @@ const audio = document.getElementById("typeAudio");
 const profileBlock = document.getElementById("profile-block");
 const social = document.getElementById("social");
 const cv = document.getElementById("cv-button");
+let startButtonClick = false;
 
 // Individuelle Zeitpunkte (ms) für jedes Zeichen
 const timings = [
@@ -15,17 +16,28 @@ const timings = [
 ];
 
 function startTyping() {
+  startButtonClick = true;
+  const isMobile = window.innerWidth < 768;
   const startButton = document.getElementById("start-button");
   social.classList.add("slide-down")
 
   // Entferne Button-Eigenschaften von start-button
-  startButton.classList.replace("border-gray-300", "border-transparent");
-  startButton.classList.remove("shadow", "cursor-pointer","hover:shadow-lg", "hover:scale-105");
+  startButton.classList.add("border-transparent", "disable");
+  startButton.classList.remove("starting-hover");
   startButton.classList.add("fade-border");
+  social.classList.remove("hidden");
   //startButton.classList.remove("border", "border-gray-300", "rounded-lg", "p-4", "shadow")
 
-  // Zeige den Text
-  element.classList.remove("hidden");
+  if (isMobile) {
+    // Skip Text, skip Audio – direkt alles andere anzeigen
+    document.getElementById("start-area").classList.add("slide-up");
+    startButton.classList.add("slide-down");
+    const content = document.getElementById("mainContent");
+    content.classList.remove("opacity-0");
+    content.classList.add("opacity-100");
+    social.classList.replace("opacity-0", "opacity-100");
+    return;
+  }
 
   // Starte Audio
   audio.play();
@@ -42,7 +54,7 @@ function startTyping() {
   setTimeout(() => {
     // Nach oben schieben
     document.getElementById("start-area").classList.add("slide-up");
-    [startButton, element].forEach(el => el.classList.add("slide-down"));
+    [element, startButton].forEach(el => el.classList.add("slide-down"));
     
     // Hauptinhalt einblenden
     const content = document.getElementById("mainContent");
@@ -56,3 +68,20 @@ function startTyping() {
 }
 
 document.getElementById("start-button").addEventListener("click", startTyping, { once: true });
+
+window.addEventListener("resize", handleResize);
+
+function handleResize() {
+  if(startButtonClick == true) {
+    audio.pause();
+    if (window.innerWidth >= 1024) {
+      element.style.display = "block"; // Fallback-Sicherung
+      cv.classList.replace("opacity-0", "opacity-100");
+      element.textContent = text;
+    }
+    else if (window.innerWidth < 1024) {
+      element.style.display = "none";
+      element.textContent = "";
+    }
+  }
+}
