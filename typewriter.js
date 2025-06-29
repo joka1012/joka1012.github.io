@@ -5,6 +5,8 @@ const profileBlock = document.getElementById("profile-block");
 const social = document.getElementById("social");
 const cv = document.getElementById("cv-button");
 let startButtonClick = false;
+const hasVisited = localStorage.getItem("hasVisited");
+const firstVisit = !hasVisited;
 
 // Individuelle Zeitpunkte (ms) für jedes Zeichen
 const timings = [
@@ -28,6 +30,23 @@ function startTyping() {
   social.classList.remove("hidden");
   //startButton.classList.remove("border", "border-gray-300", "rounded-lg", "p-4", "shadow")
 
+  if (!firstVisit) {
+    // Kein Erstbesuch → direkte Anzeige (statisch)
+    element.textContent = text;
+
+    document.getElementById("start-area").classList.add("slide-up-no-animation");
+    [element, startButton].forEach(el => el.classList.add("slide-down-no-animation"));
+
+    const content = document.getElementById("mainContent");
+    content.classList.remove("opacity-0");
+    content.classList.add("opacity-100");
+    social.classList.replace("opacity-0", "opacity-100");
+    cv.classList.replace("opacity-0", "opacity-100");
+
+    localStorage.setItem("hasVisited", "true"); // dennoch setzen
+    return;
+  }
+
   if (isMobile) {
     // Skip Text, skip Audio – direkt alles andere anzeigen
     document.getElementById("start-area").classList.add("slide-up");
@@ -36,6 +55,7 @@ function startTyping() {
     content.classList.remove("opacity-0");
     content.classList.add("opacity-100");
     social.classList.replace("opacity-0", "opacity-100");
+    localStorage.setItem("hasVisited", "true");
     return;
   }
 
@@ -64,6 +84,7 @@ function startTyping() {
     cv.classList.replace("opacity-0", "opacity-100");
 
   }, totalDuration);
+  localStorage.setItem("hasVisited", "true");
 
 }
 
@@ -91,3 +112,7 @@ function handleResize() {
     }
   }
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  startTyping();
+});
