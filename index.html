@@ -15,13 +15,18 @@
     />
   </head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKW4XH5TY8"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-TKW4XH5TY8"
+  ></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    gtag('config', 'G-TKW4XH5TY8');
+    gtag("config", "G-TKW4XH5TY8");
   </script>
   <body>
     <header class="flex justify-between p-4">
@@ -445,29 +450,24 @@
           <h2 class="body-titel">Personal projects</h2>
           <div class="projects mt-4">
             <div class="project">
-              <a href="" target="_blank"></a>
               <img
                 src="bilder/tunedeck_logo_bg-white.jpg"
                 alt="Tunedeck logo"
               />
-              <div class="project-content">
-                Social media page for sharing music using REACT (coming soon)
-              </div>
               <a href="" target="_blank"
-                ><span class="project-name">Tunedeck</span></a
+                ><div class="project-content">
+                  Social media page for sharing music using REACT (coming soon)
+                </div>
+                <span class="project-name">Tunedeck</span></a
               >
             </div>
             <div class="project">
-              <a href="https://joka1012.github.io/potato-stock" target="_blank"></a>
-              <img
-                src="bilder/potato.jpg"
-                alt="Potato pic"
-              />
-              <div class="project-content">
-                Buy and sell potato stock and increase your wealth.
-              </div>
+              <img src="bilder/potato.jpg" alt="Potato pic" />
               <a href="https://joka1012.github.io/potato-stock" target="_blank"
-                ><span class="project-name">Potato Stock</span></a
+                ><div class="project-content">
+                  Buy and sell potato stock and increase your wealth.
+                </div>
+                <span class="project-name">Potato Stock</span></a
               >
             </div>
           </div>
