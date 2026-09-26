@@ -15,6 +15,7 @@ let renderer: THREE.WebGLRenderer
 let animationFrame: number
 let scrollTrigger: ScrollTrigger | undefined
 let hoverElement: HTMLElement | null = null
+let isMobile = false
 
 let uniforms: {
   uTime: { value: number }
@@ -106,14 +107,38 @@ onMounted(() => {
 
   let targetScroll = 0
 
-  scrollTrigger = ScrollTrigger.create({
-    trigger: '.right',
-    start: 'top top',
-    end: 'bottom bottom',
+  const mm = gsap.matchMedia()
 
-    onUpdate: (self) => {
-      targetScroll = self.progress
-    },
+  mm.add('(min-width: 768px)', () => {
+    scrollTrigger = ScrollTrigger.create({
+      trigger: '.right',
+      start: 'top top',
+      end: 'bottom bottom',
+
+      onUpdate: (self) => {
+        targetScroll = self.progress
+      },
+    })
+  })
+
+  mm.add('(max-width: 767px)', () => {
+    isMobile = true
+
+    const updateScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+
+      const progress = maxScroll > 0 ? Math.min(Math.max(window.scrollY / maxScroll, 0), 1) : 0
+
+      uniforms!.uScroll.value = progress
+    }
+
+    window.addEventListener('scroll', updateScroll, { passive: true })
+
+    updateScroll()
+
+    return () => {
+      window.removeEventListener('scroll', updateScroll)
+    }
   })
 
   const clock = new THREE.Clock()
@@ -121,7 +146,10 @@ onMounted(() => {
   function animate() {
     animationFrame = requestAnimationFrame(animate)
 
-    uniforms!.uScroll.value += (targetScroll - uniforms!.uScroll.value) * 0.02
+    // Nur Desktop smoothen
+    if (!isMobile) {
+      uniforms!.uScroll.value += (targetScroll - uniforms!.uScroll.value) * 0.02
+    }
 
     uniforms!.uTime.value = clock.getElapsedTime() * 0.2
 
