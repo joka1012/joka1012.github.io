@@ -8,14 +8,10 @@ import ShaderBackground from './ShaderBackground.vue'
 
 const projects = [
   {
-    title: "Naomi's Homepage",
+    title: "Project: Naomi's Homepage - not done",
     year: '2026',
-    description: 'Frontend development, animation and creative coding.',
-  },
-  {
-    title: "Riri's Homepage",
-    year: '2026',
-    description: 'A creative portfolio website with interactive elements.',
+    description:
+      'Created a website for my sister. Because she gave no input. I used this opportunity to try out different technologies like THREE.js, Shader/GLSL and GSAP. The design can see a lot of improvement, but it was useful for seeing the capabilities of web development.',
   },
 ]
 
@@ -29,7 +25,7 @@ const abouts = [
   It was there that I started to realize what I actually wanted to do — creating things that combine technology with creativity.`,
   },
   {
-    title: '⇝ currently',
+    title: '⇝ currently learning',
     content: `Looked into:<br/>
               Shaders/GLSL<br />
               THREE.js<br />
@@ -52,7 +48,8 @@ const abouts = [
     title: '⇝ about me',
     content: `Usually listening to: Hiphop/breakdance beats <br />
               Can spend to much time with: finding the right font <br />
-              Sometimes I like to: knit (still a beginner)
+              Sometimes I like to: knit (still a beginner)<br />
+              I have redone this website a couple of times
               `,
   },
 ]
@@ -221,7 +218,7 @@ onMounted(() => {
         <div class="starting-view"></div>
         <div>
           <div class="projects">
-            <h2>Projects</h2>
+            <h2>Projects/Post</h2>
 
             <div
               v-for="(project, index) in projects"
