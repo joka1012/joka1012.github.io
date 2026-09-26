@@ -112,7 +112,17 @@ hr {
   padding: 0;
 }
 
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
 @media (min-width: 768px) {
+  html,
+  body {
+    overscroll-behavior-y: auto;
+  }
+
   h2 {
     margin: 0.83em 0 0 0;
   }
