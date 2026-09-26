@@ -96,7 +96,9 @@ void main()
 {
     vec2 fragCoord = gl_FragCoord.xy;
 
-    fragCoord.y -= uScroll * iResolution.y;
+    float scroll = clamp(uScroll, 0.0, 1.0);
+
+    fragCoord.y -= scroll * iResolution.y;
 
     vec3 screen = vec3(0.0);
 
@@ -152,17 +154,17 @@ void main()
 
     vec3 color;
 
-    if (uScroll < 0.25) {
-        color = mix(c1, c2, uScroll * 4.0);
+    if (scroll < 0.25) {
+        color = mix(c1, c2, scroll * 4.0);
     }
-    else if (uScroll < 0.5) {
-        color = mix(c2, c3, (uScroll - 0.25) * 4.0);
+    else if (scroll < 0.5) {
+        color = mix(c2, c3, (scroll - 0.25) * 4.0);
     }
-    else if (uScroll < 0.75) {
-        color = mix(c3, c4, (uScroll - 0.5) * 4.0);
+    else if (scroll < 0.75) {
+        color = mix(c3, c4, (scroll - 0.5) * 4.0);
     }
     else {
-        color = mix(c4, c5, (uScroll - 0.75) * 4.0);
+        color = mix(c4, c5, (scroll - 0.75) * 4.0);
     }
 
     screen *= color;
