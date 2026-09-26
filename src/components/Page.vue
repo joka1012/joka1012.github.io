@@ -20,9 +20,9 @@ const abouts = [
     title: '⇝ education & employment',
     content: `I studied Business Informatics in Karlsruhe, mostly because I wasn't quite sure what I wanted to do.<br /><br />
 
-  Somewhere along the way, I found myself enjoying software development and eventually ended up working at a consulting company.<br /><br />
+              Somewhere along the way, I found myself enjoying software development and eventually ended up working at a consulting company.<br /><br />
 
-  It was there that I started to realize what I actually wanted to do — creating things that combine technology with creativity.`,
+              It was there that I started to realize what I actually wanted to do — creating things that combine technology with creativity.`,
   },
   {
     title: '⇝ currently learning',
@@ -285,7 +285,6 @@ onMounted(() => {
     </div>
   </div>
   <div class="info-container">
-    <a class="info">> Blog <</a>
     <a href="mailto:kaioliverjk@gmail.com" class="info">> Contact <</a>
     <a href="www.linkedin.com/in/kai-jones-244384204" target="_blank" class="info">> LinkedIn <</a>
   </div>
