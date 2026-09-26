@@ -8,7 +8,7 @@ import ShaderBackground from './ShaderBackground.vue'
 
 const projects = [
   {
-    title: "Project: Naomi's Homepage - not done",
+    title: "Naomi's Homepage - not done",
     year: '2026',
     description:
       'Created a website for my sister. Because she gave no input. I used this opportunity to try out different technologies like THREE.js, Shader/GLSL and GSAP. The design can see a lot of improvement, but it was useful for seeing the capabilities of web development.',
